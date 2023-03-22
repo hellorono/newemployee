@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from empweb import models
-from django.views.generic import CreateView,FormView,TemplateView,ListView,UpdateView
+from django.views.generic import CreateView,FormView,ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate,login,logout
@@ -11,7 +11,7 @@ from empweb.models import Departmentmaster,SubDepartmentmaster
 class SignUpView(CreateView):
     template_name="register.html"
     form_class=UserRegistrationForm
-    success_url=reverse_lazy("signin")
+    success_url=reverse_lazy("index")
 
 class SignInView(FormView):
     template_name="login.html"
@@ -42,6 +42,9 @@ class DeptMasterView(CreateView,ListView):
     queryset=Departmentmaster.objects.all()
     context_object_name="deptmaster"
 
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
     def form_valid(self, form):
         form.instance.user=self.request.user
         return super().form_valid(form)
@@ -54,9 +57,13 @@ class SubdeptmasterView(CreateView,ListView):
     queryset=Departmentmaster.objects.all()
     context_object_name="subdeptmaster"
 
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+    
     def form_valid(self, form):
         form.instance.user=self.request.user
         return super().form_valid(form)
+
 
 
     
