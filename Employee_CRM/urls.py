@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from empweb.views import SignInView,SignUpView,IndexView,DeptMasterView,SubdeptmasterView
+from empweb.views import SignInView,SignUpView,IndexView,DeptMasterCreateView,DeptMasterListView,SubDeptMasterView,EmployeeView,DeptMasterView,UpdateDepartmentMaster,departmentmaster_delete,SubdeptCreateView,SubdeptListView
 
 
 urlpatterns = [
@@ -23,6 +23,16 @@ urlpatterns = [
     path("login",SignInView.as_view(),name="signin"),
     path("",SignUpView.as_view(),name="signup"),
     path("index",IndexView.as_view(),name="index"),
-    path("dept",DeptMasterView.as_view(),name="dept"),
-    path("subdept",SubdeptmasterView.as_view,name="subdept")
+    path("deptmaster",DeptMasterView.as_view(),name="deptmaster"),
+    path("add-deptmaster",DeptMasterCreateView.as_view(),name="add-deptmaster"),
+    path("list-deptmaster",DeptMasterListView.as_view(),name="list-deptmaster"),
+    path("update/<int:pk>",UpdateDepartmentMaster.as_view(),name="update"),
+    path("delete/<int:pk>",departmentmaster_delete,name="dep_mas_delete"),
+
+    path("subept",SubDeptMasterView.as_view(),name="subdept"),
+    path("add_sub",SubdeptCreateView.as_view(),name="add_sub"),
+    path("list_sub",SubdeptListView.as_view(),name="list_sub")
+
+    
+
 ]

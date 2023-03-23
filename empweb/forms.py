@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from empweb.models import Departmentmaster,SubDepartmentmaster
+from empweb.models import Departmentmaster,SubDepartmentmaster,EmployeeMaster
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -26,23 +26,23 @@ class LoginForm(forms.Form):
     password=forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control"}))
 
 
-class DepartmentMasterForm(forms.Form):
+class DepartmentMasterForm(forms.ModelForm):
     class Meta:
         model=Departmentmaster
-        fields=["department_id","department_name","description","created_by_date","created_at_date"]
+        fields=["department_id","department_name","description","created_by_date"]
 
         widgets={
             "department_id":forms.TextInput(attrs={"class":"form-control"}),
             "department_name":forms.TextInput(attrs={"class":"form-control"}),
             "description":forms.TextInput(attrs={"class":"form-control"}),
             "created_by_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
-            "created_at_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
+ 
         }
 
-class SubdepartmentMasterForm(forms.Form):
+class SubdepartmentMasterForm(forms.ModelForm):
     class Meta:
         model=SubDepartmentmaster
-        fields=["sub_department_id","department_name","description","created_by_date","created_at_date"]
+        fields=["sub_department_id","sub_department_name","description","created_by_date","created_at_date"]
 
         widgets={
             "sub_department_id":forms.TextInput(attrs={"class":"form-control"}),
@@ -53,5 +53,27 @@ class SubdepartmentMasterForm(forms.Form):
             "created_at_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
         }
 
+class EmpolyeeForm(forms.ModelForm):
+    class Meta:
+        model=EmployeeMaster
+        fields=["emp_id","name","join_date","department","sub_department","created_by_date","created_at_date","updated_at","updated_by"]
+
+        widgets={
+            "emp_id":forms.TextInput(attrs={"class":"form-control"}),
+            "name":forms.TextInput(attrs={"class":"form-control"}),
+            "join_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
+            "department":forms.TextInput(attrs={"class":"form-control"}),
+            "sub_department":forms.TextInput(attrs={"class":"form-control"}),
+            "created_by_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
+            "created_at_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
+            "updated_at":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
+            "updated_by":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
+
+
+
+
+
+
+        }
 
 
