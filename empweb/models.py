@@ -18,7 +18,7 @@ class SubDepartmentmaster(models.Model):
     sub_department_name=models.CharField(max_length=110)
     description=models.CharField(max_length=100)
     created_by_date=models.DateField()
-    created_at_date=models.DateField()
+    created_at_date=models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.sub_department_name
@@ -30,7 +30,7 @@ class EmployeeMaster(models.Model):
     department=models.ForeignKey(Departmentmaster,on_delete=models.CASCADE)
     sub_department=models.ForeignKey(SubDepartmentmaster,on_delete=models.CASCADE)
     created_by_date=models.DateField()
-    created_at_date=models.DateField()
+    created_at_date=models.DateField(auto_now_add=True)
     updated_at=models.DateField()
     updated_by=models.DateField()
     

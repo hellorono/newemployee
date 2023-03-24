@@ -42,37 +42,31 @@ class DepartmentMasterForm(forms.ModelForm):
 class SubdepartmentMasterForm(forms.ModelForm):
     class Meta:
         model=SubDepartmentmaster
-        fields=["sub_department_id","sub_department_name","description","created_by_date","created_at_date"]
+        fields=["department_id","sub_department_id","sub_department_name","description","created_by_date"]
 
         widgets={
             "sub_department_id":forms.TextInput(attrs={"class":"form-control"}),
-            "department_id":forms.TextInput(attrs={"class":"form-control"}),
+            "department_id":forms.Select(attrs={"class":"form-control"}),
             "sub_department_name":forms.TextInput(attrs={"class":"form-control"}),
             "description":forms.TextInput(attrs={"class":"form-control"}),
             "created_by_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
-            "created_at_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
+            
         }
 
 class EmpolyeeForm(forms.ModelForm):
     class Meta:
         model=EmployeeMaster
-        fields=["emp_id","name","join_date","department","sub_department","created_by_date","created_at_date","updated_at","updated_by"]
+        fields=["emp_id","name","join_date","department","sub_department","created_by_date","updated_at","updated_by"]
 
         widgets={
             "emp_id":forms.TextInput(attrs={"class":"form-control"}),
             "name":forms.TextInput(attrs={"class":"form-control"}),
             "join_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
-            "department":forms.TextInput(attrs={"class":"form-control"}),
-            "sub_department":forms.TextInput(attrs={"class":"form-control"}),
+            "department":forms.Select(attrs={"class":"form-control"}),
+            "sub_department":forms.Select(attrs={"class":"form-control"}),
             "created_by_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
-            "created_at_date":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
             "updated_at":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
             "updated_by":forms.DateInput(attrs={"class":"form-control", "type":"date", "format":"%Y-%m-%d"}),
-
-
-
-
-
 
         }
 

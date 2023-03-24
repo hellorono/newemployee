@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from empweb.views import SignInView,SignUpView,IndexView,DeptMasterCreateView,DeptMasterListView,SubDeptMasterView,EmployeeView,DeptMasterView,UpdateDepartmentMaster,departmentmaster_delete,SubdeptCreateView,SubdeptListView
+from empweb.views import SignInView,SignUpView,IndexView,DeptMasterCreateView,DeptMasterListView,SubDeptMasterView,DeptMasterView,UpdateDepartmentMaster,departmentmaster_delete,SubdeptCreateView,SubdeptListView,UpdateSubDepartmentMasterView,delete_sub,EmployeeMasterView,EmployeeCreateView,EmployeeListView,UpdateEmployeeListView,delete_employee,sign_out_view
 
 
 urlpatterns = [
@@ -31,8 +31,17 @@ urlpatterns = [
 
     path("subept",SubDeptMasterView.as_view(),name="subdept"),
     path("add_sub",SubdeptCreateView.as_view(),name="add_sub"),
-    path("list_sub",SubdeptListView.as_view(),name="list_sub")
+    path("list_sub",SubdeptListView.as_view(),name="list_sub"),
+    path("sub_update/<int:pk>",UpdateSubDepartmentMasterView.as_view(),name="sub_update"),
+    path("sub_delete/<int:pk>",delete_sub,name="sub_delete"),
 
+    path("emp_mas",EmployeeMasterView.as_view(),name="emp_mas"),
+    path("emp_add",EmployeeCreateView.as_view(),name="emp_add"),
+    path("emp_list",EmployeeListView.as_view(),name="emp_list"),
+    path("emp_update/<int:pk>",UpdateEmployeeListView.as_view(),name="emp_update"),
+    path("emp_delete/<int:pk>",delete_employee,name="emp_delete"),
     
+    path("logout",sign_out_view,name="sign-out"),
+
 
 ]
